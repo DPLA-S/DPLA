@@ -54,7 +54,7 @@ ${block(decl.body)}
 			case 'eventhandler':
 				return `__addListener__('${stmt.eventType}', function() {
 ${block(stmt.body)}
-})`;
+});`;
 			case 'if':
 				let elifs = '';
 				stmt.elifs.forEach((elifBlock, cond) => {
