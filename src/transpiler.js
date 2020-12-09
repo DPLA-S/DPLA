@@ -13,7 +13,7 @@ function input(msg) {
 }
 function int(val) {
 	const res = Number(val);
-	if (!Number.isInteger(res)) throw new Error('Cannot convert ' + val + 'to integer');
+	if (!Number.isInteger(res)) throw new Error('Cannot convert ' + val + ' to integer');
 	return res; 
 }
 function range(end) {
