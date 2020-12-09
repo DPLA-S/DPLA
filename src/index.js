@@ -12,4 +12,4 @@ function run(code) {
 	const jsCode = transpile(code);
 	return eval(jsCode);
 }
-export transpile, run;
+export { transpile, run };
