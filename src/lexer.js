@@ -106,6 +106,7 @@ export default function lex(code) {
 								case 'n': string += '\n'; break;
 								case 'r': string += '\r'; break;
 								case 't': string += '\t'; break;
+								case '\\': string += '\\'; break;
 								case '"': string += '"'; break;
 								case "'": string += "'"; break;
 								default: error(line, 'Invalid escape sequence \\' + next());
