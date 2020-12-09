@@ -1,17 +1,17 @@
-import error from './error.js'
+import error from './error.js';
+const reserved = [
+	'Event',
+
+	'If', 'Else', 'Elif',
+
+	'function', 'return',
+
+	'For', 'in'
+].reduce((res, curr) => {
+	res[curr] = curr.toUpperCase();
+	return res;
+}, {});
 export default function lex(code) {
-	const reserved = [
-		'Event',
-
-		'If', 'Else','Elif',
-
-		'function', 'return',
-
-		'For', 'in'
-	].reduce((res, curr) => {
-		res[curr] = curr.toUpperCase();
-		return res;
-	}, {})
 	const tokens = [];
 	let token = '';
 	let index = 0, line = 1;
@@ -24,10 +24,10 @@ export default function lex(code) {
 	const isEnd = () => index < code.length;
 	const isEOL = () => next() === '\n';
 	function addToken(type, value = type) {
-		tokens.push({type, value, line});
+		tokens.push({ type, value, line });
 	}
 	function match(nextToken) {
-		if (next() !== nextToken) 
+		if (next() !== nextToken)
 			return false;
 		advance();
 		return true;
@@ -73,12 +73,12 @@ export default function lex(code) {
 				case '(': addToken('OPEN_PAREN'); break;
 				case ')': addToken('CLOSE_PAREN'); break;
 				case ',': addToken('COMMA'); break;
-				case '=': 
+				case '=':
 					if (match('=')) addToken('EQUALS_EQUALS');
 					else if (match('!')) addToken('EQUALS_BANG');
 					else addToken('EQUALS');
 					break;
-				case '&': 
+				case '&':
 					if (match('&')) {
 						while (next() != '\n' && !isEnd()) advance();
 					}
