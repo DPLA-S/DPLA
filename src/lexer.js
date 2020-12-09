@@ -5,7 +5,7 @@ export default function lex(code) {
 
 		'If', 'Else','Elif',
 
-		'function',
+		'function', 'return',
 
 		'For', 'in'
 	].reduce((res, curr) => {
