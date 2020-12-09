@@ -4,7 +4,7 @@ import transpileAst from './transpiler.js';
 
 function transpile(code) {
 	const tokens = lex(code);
-	const statements = parse(code);
+	const statements = parse(tokens);
 	const jsCode = transpileAst(statements);
 	return jsCode;
 }
