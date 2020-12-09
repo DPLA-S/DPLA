@@ -27,7 +27,6 @@ export default function parse(tokens) {
 			return expr;
 		}
 		if (match("IDENTIFIER")) return {type: 'identifier', name: previous().value, line: previous().line};
-		console.log(peek(), ',', tokens);
 		error(peek().line, 'Unexpected token ' + peek().value);
 	}
 	function call() {
