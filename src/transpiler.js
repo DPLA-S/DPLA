@@ -33,7 +33,7 @@ window.addEventListener("load", function(e) {
 	__emitEvent__('onLaunch');
 });
 window.addEventListener('keydown', function(e) {
-        __emitEvent__('keypress_' + e.key);
+   __emitEvent__('keypress_' + e.key);
 });
 // ----------------- DPLA stdlib
 `;
@@ -43,7 +43,7 @@ export default function transpile(statements, isFinalProgram = true) {
 	}
 	function transpileDeclaration(decl) {
 		if (!decl) return '';
-		if (decl.type === 'funcdef') return `function ${decl.name}(${decl.args.join(' ')}) {
+		if (decl.type === 'funcdef') return `function ${decl.name}(${decl.args.map(item => transpileExpr(item)).join(' ')}) {
 ${block(decl.body)}
 }`;
 		return transpileStatement(decl);
