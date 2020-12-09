@@ -132,6 +132,7 @@ export default function parse(tokens) {
 			consume('OPEN_SQUARE', 'Expect opening square bracket');
 			const elifCond = expression();
 			consume('CLOSE_SQUARE', 'Expect closing square bracket after condition');
+			consume('OPEN_PAREN', 'Expect opening parenthesis before block');
 			const elifBody = block();
 			elifs.set(elifCond, elifBody);
 		}
