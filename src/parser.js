@@ -157,7 +157,7 @@ export default function parse(tokens) {
 		if (match('EVENT')) return eventStatement();
 		if (match('IF')) return ifStatement();
 		if (match('FOR')) return forStatement();
-		if (match("OPEN_PAREN")) return {type: 'block', line: previous().line, body: block()}
+		if (match("RETURN")) return {type: 'return', line: previous().line, value: expression()};
 		return expression();
 	}
 	const statements = [];
