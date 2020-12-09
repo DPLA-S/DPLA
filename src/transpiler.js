@@ -37,6 +37,14 @@ window.addEventListener('keydown', function(e) {
 });
 // ----------------- DPLA stdlib
 `;
+function escapeString(str) {
+	return str
+	.replace(/\n/g, '\\n')
+	.replace(/\r/g, '\\r')
+	.replace(/\t/g, '\\t')
+	.replace(/'/g, '\\')
+	.replace(/"/g, '\\"');
+}
 export default function transpile(statements, isFinalProgram = true) {
 	function block(stmts, indent = 2) {
 		return transpile(stmts, false).split('\n').map(item => ' '.repeat(indent) + item).join('\n');
@@ -80,7 +88,7 @@ ${block(stmt.body)}
 	function transpileExpr(expr) {
 		if (!expr) return '';
 		switch (expr.type) {
-			case 'literal': return typeof expr.value === 'string' ? `"${expr.value}"` : expr.value;
+			case 'literal': return typeof expr.value === 'string' ? `"${escapeString(expr.value)}"` : expr.value;
 			case 'identifier': return expr.name;
 			case 'binary': 
 				const left = transpileExpr(expr.left);
