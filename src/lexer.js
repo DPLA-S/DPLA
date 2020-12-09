@@ -21,7 +21,7 @@ export default function lex(code) {
 	};
 	const next = (times = 1) => code[index + times];
 	const peek = () => code[index];
-	const isEnd = () => index < code.length;
+	const isEnd = () => !(index < code.length);
 	const isEOL = () => next() === '\n';
 	function addToken(type, value = type) {
 		tokens.push({ type, value, line });
@@ -84,14 +84,14 @@ export default function lex(code) {
 					}
 					break;
 				case '#':
-					if (match('#')) {
-						while (!isEnd() && !(next() == '#' && next(2) !== '&')) {
+					if (match('&')) {
+						while (!isEnd() && !(next() === '&' && next(2) === '#')) {
 							advance();
 							if (peek() === '\n') line += 1;
 						}
-						if (next() !== '#' && next(2) !== '&')
+						if (next() !== '&' && next(2) !== '#')
 							error(line, 'Unterminated multiline comment');
-						line += 2;
+						advance(2);
 					}
 					break;
 				case '"':
