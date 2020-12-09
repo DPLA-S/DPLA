@@ -42,7 +42,7 @@ function escapeString(str) {
 	.replace(/\n/g, '\\n')
 	.replace(/\r/g, '\\r')
 	.replace(/\t/g, '\\t')
-	.replace(/'/g, '\\')
+	.replace(/'/g, "\\'")
 	.replace(/"/g, '\\"');
 }
 export default function transpile(statements, isFinalProgram = true) {
