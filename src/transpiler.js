@@ -70,10 +70,8 @@ ${block(stmt.elseBlock)}
 				return `for (let ${stmt.variable} of ${iterable}) {
 ${block(stmt.body)}
 }`;
-			case 'block':
-				return `{
-${block(stmt.body)}
-}`;
+			case 'return':
+				return `return ${transpileExpr(stmt.value)}`;
 		}
 		return transpileExpr(stmt);
 	}
