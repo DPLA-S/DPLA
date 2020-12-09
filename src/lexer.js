@@ -101,7 +101,7 @@ export default function lex(code) {
 					while (next() !== quote && !isEOL()) {
 						advance();
 						if (next() === '\\') {
-							switch (next()) {
+							switch (next(2)) {
 								case 'n': string += '\n'; break;
 								case 'r': string += '\r'; break;
 								case 't': string += '\t'; break;
