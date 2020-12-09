@@ -39,10 +39,10 @@ window.addEventListener('keydown', function(e) {
 `;
 function escapeString(str) {
 	return str
+	.replace(/\\/g, '\\\\')
 	.replace(/\n/g, '\\n')
 	.replace(/\r/g, '\\r')
 	.replace(/\t/g, '\\t')
-	.replace(/\\/g, '\\\\')
 	.replace(/'/g, "\\'")
 	.replace(/"/g, '\\"');
 }
@@ -105,7 +105,7 @@ ${block(stmt.body)}
 			case 'funccall':
 				return `${expr.name}(${expr.args.map(arg => transpileExpr(arg)).join(', ')})`;
 			case 'assignment':
-				return `var ${name} = ${transpileExpr(value)}`;
+				return `var ${expr.name} = ${transpileExpr(expr.value)}`;
 		}
 	}
 	let res = isFinalProgram ? stdlib : '';
