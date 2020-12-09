@@ -75,7 +75,7 @@ export default function parse(tokens) {
 			if (expr.type !== 'identifier')
 				error(expr.line, 'Expected identifier but instead got ' + expr.type);
 			const value = expression();
-			return {type: 'assignment', name: expr, value, line: expr.line};
+			return {type: 'assignment', name: expr.name, value, line: expr.line};
 		}
 		return expr;
 	}
