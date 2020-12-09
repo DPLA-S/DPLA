@@ -1,4 +1,4 @@
-import error from './error.js'
+import error from './error.js';
 export default function parse(tokens) {
 	let index = 0;
 	const peek = () => tokens[index] || {};
