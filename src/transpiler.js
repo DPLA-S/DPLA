@@ -69,7 +69,6 @@ ${block(stmt.elseBlock)}
 }` : ''}`;
 			case 'for':
 				let iterable = transpileExpr(stmt.iterable);
-				iterable = iterable.slice(-1) === ';' ? iterable.slice(0, -1) : iterable;
 				return `for (let ${stmt.variable} of ${iterable}) {
 ${block(stmt.body)}
 }`;
@@ -95,9 +94,9 @@ ${block(stmt.body)}
 					case 'EQUALS_BANG': return `${left} !== ${right}`;
 				}
 			case 'funccall':
-				return `${expr.name}(${expr.args.map(arg => transpileExpr(arg)).join(', ')});`;
+				return `${expr.name}(${expr.args.map(arg => transpileExpr(arg)).join(', ')})`;
 			case 'assignment':
-				return `var ${name} = ${transpileExpr(value)};`;
+				return `var ${name} = ${transpileExpr(value)}`;
 		}
 	}
 	let res = isFinalProgram ? stdlib : '';
