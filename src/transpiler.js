@@ -32,6 +32,9 @@ function __addListener__(type, callback) {
 window.addEventListener("load", function(e) {
 	__emitEvent__('onLaunch');
 });
+window.addEventListener('keydown', function(e) {
+        __emitEvent__('keypress_' + e.key);
+});
 // ----------------- DPLA stdlib
 `;
 export default function transpile(statements, isFinalProgram = true) {
@@ -71,7 +74,7 @@ ${block(stmt.elseBlock)}
 ${block(stmt.body)}
 }`;
 			case 'return':
-				return `return ${transpileExpr(stmt.value)}`;
+				return `return ${transpileExpr(stmt.value)};`;
 		}
 		return transpileExpr(stmt);
 	}
