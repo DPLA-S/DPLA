@@ -8,8 +8,9 @@ function transpile(code) {
 	const jsCode = transpileAst(statements);
 	return jsCode;
 }
-function run(code) {
+function run(code, scope = {}) {
 	const jsCode = transpile(code);
-	return eval(jsCode);
+	const func = new Function(...Object.keys(scope), jsCode);
+	func(...Object.values(scope));
 }
 export { transpile, run };

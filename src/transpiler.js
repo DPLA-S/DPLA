@@ -1,3 +1,4 @@
+  
 const stdlib = `//DPLA stdlib -----------
 function print(object) {
 	console.log(object);

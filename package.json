@@ -1,0 +1,31 @@
+{
+  "name": "dpla",
+  "version": "1.0.0",
+  "description": "DPLA transpiler",
+  "main": "dist/dpla-umd.js",
+  "module": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run build:umd && npm run build:esm",
+    "build:umd": "rollup --config rollup.config.js src/index.js --file dist/dpla-umd.js --format umd",
+    "build:esm": "rollup --config rollup.config.js src/index.js --file dist/dpla-esm.js --format es"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DPLA-S/DPLA.git"
+  },
+  "keywords": [
+    "language",
+    "programming language",
+    "dpla"
+  ],
+  "author": "programmeruser",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DPLA-S/DPLA/issues"
+  },
+  "homepage": "https://github.com/DPLA-S/DPLA#readme",
+  "devDependencies": {
+    "rollup": "^2.56.2"
+  }
+}
